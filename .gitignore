@@ -1,0 +1,10 @@
+/Nano/bin
+/Nano/obj
+/NanoTests/obj
+/NanoTests/bin
+/Nano/packages
+/NanoTests/packages
+
+*.dll
+
+*.userprefs
