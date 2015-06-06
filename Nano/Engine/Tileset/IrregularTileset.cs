@@ -8,12 +8,11 @@ namespace Nano.Engine.Tileset
     /// <summary>
     /// Irregular tileset.
     /// Tileset consisting of tiles specified by arbitrary rectangles
-    /// TODO: IrregularTileset not yet implemented
     /// </summary>
     public class IrregularTileset : ITileset
     {
         #region ITileset implementation
-        public Microsoft.Xna.Framework.Point Offset
+        public Point Offset
         {
             get
             {

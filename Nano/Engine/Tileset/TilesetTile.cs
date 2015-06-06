@@ -17,7 +17,7 @@ namespace Nano.Engine.Tileset
         /// Gets or sets the tileset identifier. i.e. the Id of the tileset this tile uses.
         /// </summary>
         /// <value>The tileset identifier.</value>
-        public int TilesetId { get; set; }//TODO change to explict ref to ITileset
+        public int TilesetId { get; set; }
 
 		public TilesetTile(int tileIndex, int tilesetId)
 		{
