@@ -42,11 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sprites\ISprite.cs" />
     <Compile Include="Input\InputManager.cs" />
     <Compile Include="Input\KeyBinding.cs" />
     <Compile Include="Engine\MapLayer.cs" />
-    <Compile Include="Sprites\BasicSprite.cs" />
     <Compile Include="Engine\Tileset\ITileset.cs" />
     <Compile Include="Engine\Tileset\TilesetTile.cs" />
     <Compile Include="Engine\Tileset\RegularTileset.cs" />
@@ -56,16 +54,22 @@
     <Compile Include="Engine\INanoEngine.cs" />
     <Compile Include="Engine\Sys\IServices.cs" />
     <Compile Include="Engine\Sys\ServiceLocator.cs" />
+    <Compile Include="Engine\TileMap.cs" />
+    <Compile Include="Engine\NanoEngine.cs" />
+    <Compile Include="Engine\Sprites\BasicSprite.cs" />
+    <Compile Include="Engine\Sprites\ISprite.cs" />
+    <Compile Include="Engine\Cameras\Camera2D.cs" />
+    <Compile Include="Engine\Cameras\ICamera.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Sprites\" />
     <Folder Include="Input\" />
     <Folder Include="Engine\" />
     <Folder Include="Engine\Tileset\" />
+    <Folder Include="Engine\Cameras\" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>
