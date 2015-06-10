@@ -6,27 +6,31 @@ namespace Nano.Engine.Sprites
 {
     public class BasicSprite : ISprite
     {
+        private Texture2D m_Texture;
+        private Rectangle m_SourceRectangle;
+        private Vector2 m_Position;
+
         #region ISprite implementation
 
         public void Update(GameTime gameTime)
         {
-            throw new NotImplementedException();
+            
         }
 
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
-            throw new NotImplementedException();
+            spriteBatch.Draw(m_Texture, m_Position, m_SourceRectangle, Color.White);
         }
 
         public Vector2 Position
         {
             get
             {
-                throw new NotImplementedException();
+                return m_Position;
             }
             set
             {
-                throw new NotImplementedException();
+                m_Position = value;
             }
         }
 
@@ -34,11 +38,7 @@ namespace Nano.Engine.Sprites
         {
             get
             {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
+                return m_SourceRectangle.Width;
             }
         }
 
@@ -46,18 +46,16 @@ namespace Nano.Engine.Sprites
         {
             get
             {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
+                return m_SourceRectangle.Height;
             }
         }
 
         #endregion
 
-        public BasicSprite()
+        public BasicSprite(Texture2D texture)
         {
+            m_Texture = texture;
+            m_SourceRectangle = new Rectangle(0, 0, texture.Width, texture.Height);
         }
     }
 }

@@ -8,13 +8,13 @@ namespace Nano.Engine.Sprites
 	{
 		Vector2 Position { get; set; }
 
-		int Width { get; set; }
+		int Width { get; }
 
-		int Height { get; set; }
+		int Height { get; }
             
         void Update(GameTime gameTime);
 
-        void Draw(GameTime gameTime, SpriteBatch spriteBatch);
+        void Draw(SpriteBatch spriteBatch);
     
     }
 }
