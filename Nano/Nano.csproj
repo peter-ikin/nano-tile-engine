@@ -50,16 +50,14 @@
     <Compile Include="Engine\Tileset\RegularTileset.cs" />
     <Compile Include="Engine\Tileset\IrregularTileset.cs" />
     <Compile Include="Input\IInputService.cs" />
-    <Compile Include="Engine\TileEngineType.cs" />
-    <Compile Include="Engine\INanoEngine.cs" />
     <Compile Include="Engine\Sys\IServices.cs" />
     <Compile Include="Engine\Sys\ServiceLocator.cs" />
     <Compile Include="Engine\TileMap.cs" />
-    <Compile Include="Engine\NanoEngine.cs" />
     <Compile Include="Engine\Sprites\BasicSprite.cs" />
     <Compile Include="Engine\Sprites\ISprite.cs" />
     <Compile Include="Engine\Cameras\Camera2D.cs" />
     <Compile Include="Engine\Cameras\ICamera.cs" />
+    <Compile Include="Engine\TileMapType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
