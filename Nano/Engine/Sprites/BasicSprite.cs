@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Nano.Sprites
+namespace Nano.Engine.Sprites
 {
     public class BasicSprite : ISprite
     {
