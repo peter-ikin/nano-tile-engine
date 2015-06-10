@@ -76,7 +76,10 @@ namespace Nano.Engine
 				if(m_MapWidth != m_MapLayers[i].Width || m_MapHeight != m_MapLayers[i].Height)
 					throw new Exception("Map layers are not the same size");
 			}
-                
+
+            m_TileMapType = mapType;
+            m_TileHeight = tileHeight;
+            m_TileWidth = tileWidth;
 		}
 
 		public void Draw (SpriteBatch spriteBatch, ICamera camera)
