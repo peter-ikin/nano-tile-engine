@@ -285,7 +285,7 @@ namespace Nano.Engine
 			{
 				tilesets.Add( pair.Item2 );
 			}
-            TileMapType mapType;
+            TileMapType mapType = TileMapType.Square;
             return new TileMap(mapType, tileWidth.Value, tileHeight.Value,tilesets,layers);
 		}
 
@@ -294,7 +294,7 @@ namespace Nano.Engine
 			//TODO Parse properties from tmx file
 		}
 
-		private static System.Tuple<int,RegularTileset> ParseTileset(XmlNode tilesetNode,ContentManager content)
+		private static Tuple<int,RegularTileset> ParseTileset(XmlNode tilesetNode,ContentManager content)
 		{
 			// example xml input
 			// <tileset firstgid="144" name="water" tilewidth="64" tileheight="64">
