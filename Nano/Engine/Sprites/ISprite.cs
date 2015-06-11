@@ -11,6 +11,10 @@ namespace Nano.Engine.Sprites
 		int Width { get; }
 
 		int Height { get; }
+
+        float Rotation { get; set;}
+
+        Vector2 RotationOrigin { get; set;}
             
         void Update(GameTime gameTime);
 
