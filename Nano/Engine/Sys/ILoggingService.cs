@@ -11,7 +11,7 @@ namespace Nano.Engine.Sys
 
     public interface ILoggingService
     {
-        void Log(string message, LogLevel logLevel);
+        void Log(string message,LogLevel logLevel = LogLevel.Info);
     }
 }
 

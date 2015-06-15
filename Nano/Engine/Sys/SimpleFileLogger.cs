@@ -16,7 +16,7 @@ namespace Nano.Engine.Sys
 
         #region IDisposable implementation
 
-        public void Log(string message, LogLevel logLevel)
+        public void Log(string message, LogLevel logLevel = LogLevel.Info)
         {
             string outputString = string.Format("{0} : {1} : {2}", 
                 DateTime.Now,
