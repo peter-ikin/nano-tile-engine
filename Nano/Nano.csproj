@@ -58,6 +58,12 @@
     <Compile Include="Engine\Cameras\Camera2D.cs" />
     <Compile Include="Engine\Cameras\ICamera.cs" />
     <Compile Include="Engine\TileMapType.cs" />
+    <Compile Include="StateManagement\GameStateManager.cs" />
+    <Compile Include="StateManagement\GameState.cs" />
+    <Compile Include="StateManagement\IGameStateServices.cs" />
+    <Compile Include="StateManagement\IGameState.cs" />
+    <Compile Include="Engine\Sys\ILoggingService.cs" />
+    <Compile Include="Engine\Sys\SimpleFileLogger.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -68,6 +74,7 @@
     <Folder Include="Engine\" />
     <Folder Include="Engine\Tileset\" />
     <Folder Include="Engine\Cameras\" />
+    <Folder Include="StateManagement\" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>
