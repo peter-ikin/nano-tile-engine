@@ -64,6 +64,7 @@
     <Compile Include="StateManagement\IGameState.cs" />
     <Compile Include="Engine\Sys\ILoggingService.cs" />
     <Compile Include="Engine\Sys\SimpleFileLogger.cs" />
+    <Compile Include="Engine\Sys\NullLogger.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
