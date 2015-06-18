@@ -2,7 +2,7 @@
 Simple tile engine for C# and MonoGame
 
 ## Current Work In Progress Features
-+ Simple input handling through IInputService
++ Simple input handling for mouse, keyboard and gamepad
 + Game state management
 + Simple Sprite handling
 + tilesets/spritesheet support
