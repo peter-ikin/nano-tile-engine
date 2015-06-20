@@ -86,16 +86,33 @@ namespace Nano.Engine.Sprites
             get{ return m_Origin; } 
             set{ m_Origin = value; }
         }
+
+        /// <summary>
+        /// Gets or sets the source rectangle of the sprite on its targeted texture
+        /// </summary>
+        /// <value>The source rectangle.</value>
+        public Rectangle SourceRectangle
+        {
+            get { return m_SourceRectangle;}
+            set { m_SourceRectangle = value; }
+        }
+
         #endregion
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Nano.Engine.Sprites.BasicSprite"/> class.
         /// </summary>
         /// <param name="texture">The Texture that the sprite is based on</param>
-        public BasicSprite(Texture2D texture)
+        /// <param name="sourceRectangle">The rectangle of the supplied Texture2D that constitutes the drawable area of the sprite</param>
+        public BasicSprite(Texture2D texture, Rectangle? sourceRectangle)
         {
             m_Texture = texture;
-            m_SourceRectangle = new Rectangle(0, 0, texture.Width, texture.Height);
+
+            if (!sourceRectangle.HasValue)
+                m_SourceRectangle = new Rectangle(0, 0, texture.Width, texture.Height);
+            else
+                m_SourceRectangle = sourceRectangle.Value;
+            
             m_Origin = new Vector2(texture.Width / 2, texture.Height / 2);
         }
     }

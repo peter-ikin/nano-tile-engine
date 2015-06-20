@@ -65,6 +65,7 @@
     <Compile Include="Engine\Sys\ILoggingService.cs" />
     <Compile Include="Engine\Sys\SimpleFileLogger.cs" />
     <Compile Include="Engine\Sys\NullLogger.cs" />
+    <Compile Include="Engine\Graphics\ITexture2D.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -76,6 +77,7 @@
     <Folder Include="Engine\Tileset\" />
     <Folder Include="Engine\Cameras\" />
     <Folder Include="StateManagement\" />
+    <Folder Include="Engine\Graphics\" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>

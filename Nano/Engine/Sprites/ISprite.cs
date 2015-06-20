@@ -8,6 +8,8 @@ namespace Nano.Engine.Sprites
 	{
 		Vector2 Position { get; set; }
 
+        Rectangle SourceRectangle {get;set;}
+
 		int Width { get; }
 
 		int Height { get; }
