@@ -1,8 +1,9 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Nano.Engine.Graphics;
 
-namespace Nano.Engine.Sprites
+namespace Nano.Engine.Graphics.Sprites
 {
 	public interface ISprite
 	{
@@ -20,7 +21,11 @@ namespace Nano.Engine.Sprites
             
         void Update(GameTime gameTime);
 
-        void Draw(SpriteBatch spriteBatch);
+        /// <summary>
+        /// Draw the sprite.
+        /// No batching is performed by using this call, sprite is simply drawn to screen
+        /// </summary>
+        void Draw();
     
     }
 }

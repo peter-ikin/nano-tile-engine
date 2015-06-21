@@ -53,8 +53,6 @@
     <Compile Include="Engine\Sys\IServices.cs" />
     <Compile Include="Engine\Sys\ServiceLocator.cs" />
     <Compile Include="Engine\TileMap.cs" />
-    <Compile Include="Engine\Sprites\BasicSprite.cs" />
-    <Compile Include="Engine\Sprites\ISprite.cs" />
     <Compile Include="Engine\Cameras\Camera2D.cs" />
     <Compile Include="Engine\Cameras\ICamera.cs" />
     <Compile Include="Engine\TileMapType.cs" />
@@ -66,6 +64,11 @@
     <Compile Include="Engine\Sys\SimpleFileLogger.cs" />
     <Compile Include="Engine\Sys\NullLogger.cs" />
     <Compile Include="Engine\Graphics\ITexture2D.cs" />
+    <Compile Include="Engine\Graphics\ISpriteManager.cs" />
+    <Compile Include="Engine\Graphics\SpriteManager.cs" />
+    <Compile Include="Engine\Graphics\Sprites\BasicSprite.cs" />
+    <Compile Include="Engine\Graphics\Sprites\ISprite.cs" />
+    <Compile Include="Engine\Graphics\Texture2DImpl.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

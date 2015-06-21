@@ -1,8 +1,9 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Nano.Engine.Graphics;
 
-namespace Nano.Engine.Sprites
+namespace Nano.Engine.Graphics.Sprites
 {
     /// <summary>
     /// Basic sprite.
@@ -10,11 +11,18 @@ namespace Nano.Engine.Sprites
     /// </summary>
     public class BasicSprite : ISprite
     {
-        private readonly Texture2D m_Texture;
+        private readonly ITexture2D m_Texture;
         private Rectangle m_SourceRectangle;
         private Vector2 m_Position;
         private float m_Rotation;
         private Vector2 m_Origin;
+        private ISpriteManager m_Manager;
+
+        public ISpriteManager SpriteManager
+        {
+            get { return m_Manager; }
+            set { m_Manager = value; }
+        }
 
         #region ISprite implementation
 
@@ -28,13 +36,17 @@ namespace Nano.Engine.Sprites
         }
 
         /// <summary>
-        /// Draw the sprite
+        /// Draw the sprite.
+        /// No batching is performed by using this call, sprite is simply drawn to screen
         /// </summary>
-        /// <param name="spriteBatch">Sprite batch to draw with</param>
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw()
         {
-            spriteBatch.Draw(m_Texture, m_Position, m_SourceRectangle, 
-                Color.White, m_Rotation, m_Origin, 1.0f, SpriteEffects.None, 1);
+            #if DEBUG
+            if(SpriteManager == null)
+                throw new Exception("SpriteManager not set");
+            #endif
+
+            SpriteManager.DrawTexture2D(m_Texture, m_Position, m_SourceRectangle, m_Rotation, m_Origin);
         }
 
         /// <summary>
@@ -104,14 +116,11 @@ namespace Nano.Engine.Sprites
         /// </summary>
         /// <param name="texture">The Texture that the sprite is based on</param>
         /// <param name="sourceRectangle">The rectangle of the supplied Texture2D that constitutes the drawable area of the sprite</param>
-        public BasicSprite(Texture2D texture, Rectangle? sourceRectangle)
+        public BasicSprite(ITexture2D texture, Rectangle sourceRectangle)
         {
             m_Texture = texture;
 
-            if (!sourceRectangle.HasValue)
-                m_SourceRectangle = new Rectangle(0, 0, texture.Width, texture.Height);
-            else
-                m_SourceRectangle = sourceRectangle.Value;
+            m_SourceRectangle = new Rectangle(0, 0, texture.Width, texture.Height);
             
             m_Origin = new Vector2(texture.Width / 2, texture.Height / 2);
         }

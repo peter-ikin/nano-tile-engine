@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using Nano.Engine.Sprites;
+using Nano.Engine.Graphics.Sprites;
 using Nano.Input;
 
 namespace Nano.Engine.Cameras
