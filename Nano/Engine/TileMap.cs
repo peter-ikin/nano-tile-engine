@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 
 using Nano.Engine.Cameras;
-using Nano.Engine.Tileset;
+using Nano.Engine.Graphics.Tileset;
 using Nano.Engine.Sys;
 
 namespace Nano.Engine

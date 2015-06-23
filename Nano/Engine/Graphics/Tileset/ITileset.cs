@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
 
-namespace Nano.Engine.Tileset
+namespace Nano.Engine.Graphics.Tileset
 {
 	public interface ITileset
 	{

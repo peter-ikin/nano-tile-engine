@@ -112,7 +112,7 @@ namespace Nano.Engine.Graphics.Sprites
         #endregion
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Nano.Engine.Sprites.BasicSprite"/> class.
+        /// Initializes a new instance of the <see cref="Nano.Engine.Graphics.Sprites.BasicSprite"/> class.
         /// </summary>
         /// <param name="texture">The Texture that the sprite is based on</param>
         /// <param name="sourceRectangle">The rectangle of the supplied Texture2D that constitutes the drawable area of the sprite</param>
@@ -120,8 +120,21 @@ namespace Nano.Engine.Graphics.Sprites
         {
             m_Texture = texture;
 
-            m_SourceRectangle = new Rectangle(0, 0, texture.Width, texture.Height);
+            m_SourceRectangle = sourceRectangle;
             
+            m_Origin = new Vector2(texture.Width / 2, texture.Height / 2);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Nano.Engine.Graphics.Sprites.BasicSprite"/> class.
+        /// </summary>
+        /// <param name="texture">The Texture that the sprite is based on</param>
+        public BasicSprite(ITexture2D texture)
+        {
+            m_Texture = texture;
+
+            m_SourceRectangle = new Rectangle(0, 0, texture.Width, texture.Height);
+
             m_Origin = new Vector2(texture.Width / 2, texture.Height / 2);
         }
     }

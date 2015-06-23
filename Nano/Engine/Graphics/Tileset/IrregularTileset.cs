@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Nano.Engine.Tileset
+namespace Nano.Engine.Graphics.Tileset
 {
     /// <summary>
     /// Irregular tileset.

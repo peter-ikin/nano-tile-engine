@@ -1,6 +1,6 @@
 using System;
 
-namespace Nano.Engine.Tileset
+namespace Nano.Engine.Graphics.Tileset
 {
 	/// <summary>
 	/// Represents an individual Tile in the tileset

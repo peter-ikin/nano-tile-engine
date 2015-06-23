@@ -45,10 +45,6 @@
     <Compile Include="Input\InputManager.cs" />
     <Compile Include="Input\KeyBinding.cs" />
     <Compile Include="Engine\MapLayer.cs" />
-    <Compile Include="Engine\Tileset\ITileset.cs" />
-    <Compile Include="Engine\Tileset\TilesetTile.cs" />
-    <Compile Include="Engine\Tileset\RegularTileset.cs" />
-    <Compile Include="Engine\Tileset\IrregularTileset.cs" />
     <Compile Include="Input\IInputService.cs" />
     <Compile Include="Engine\Sys\IServices.cs" />
     <Compile Include="Engine\Sys\ServiceLocator.cs" />
@@ -69,6 +65,10 @@
     <Compile Include="Engine\Graphics\Sprites\BasicSprite.cs" />
     <Compile Include="Engine\Graphics\Sprites\ISprite.cs" />
     <Compile Include="Engine\Graphics\Texture2DImpl.cs" />
+    <Compile Include="Engine\Graphics\Tileset\IrregularTileset.cs" />
+    <Compile Include="Engine\Graphics\Tileset\ITileset.cs" />
+    <Compile Include="Engine\Graphics\Tileset\RegularTileset.cs" />
+    <Compile Include="Engine\Graphics\Tileset\TilesetTile.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -77,7 +77,6 @@
   <ItemGroup>
     <Folder Include="Input\" />
     <Folder Include="Engine\" />
-    <Folder Include="Engine\Tileset\" />
     <Folder Include="Engine\Cameras\" />
     <Folder Include="StateManagement\" />
     <Folder Include="Engine\Graphics\" />
