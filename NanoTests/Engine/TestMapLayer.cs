@@ -1,7 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using Nano.Engine;
-using Nano.Engine.Tileset;
+using Nano.Engine.Graphics.Tileset;
 
 namespace NanoTests.Engine
 {

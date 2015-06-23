@@ -1,7 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 
-namespace NanoTests.Engine.Tileset
+namespace NanoTests.Engine.Graphics.Tileset
 {
     [TestFixture]
     public class TestIrregularTileset

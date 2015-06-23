@@ -46,13 +46,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Engine\Tileset\TestIrregularTileset.cs" />
-    <Compile Include="Engine\Tileset\TestRegularTileset.cs" />
-    <Compile Include="Engine\Tileset\TestTilesetTile.cs" />
     <Compile Include="Engine\TestMapLayer.cs" />
-    <Compile Include="Sprites\TestBasicSprite.cs" />
     <Compile Include="Engine\Sys\TestServiceLocator.cs" />
     <Compile Include="StateManagement\TestGameStateManager.cs" />
+    <Compile Include="Engine\Cameras\TestCamera2D.cs" />
+    <Compile Include="Engine\Graphics\Tileset\TestIrregularTileset.cs" />
+    <Compile Include="Engine\Graphics\Tileset\TestRegularTileset.cs" />
+    <Compile Include="Engine\Graphics\Tileset\TestTilesetTile.cs" />
+    <Compile Include="Engine\Graphics\Sprites\TestBasicSprite.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -60,10 +61,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Engine\" />
-    <Folder Include="Engine\Tileset\" />
-    <Folder Include="Sprites\" />
     <Folder Include="Engine\Sys\" />
     <Folder Include="StateManagement\" />
+    <Folder Include="Engine\Cameras\" />
+    <Folder Include="Engine\Graphics\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Nano\Nano.csproj">

@@ -1,8 +1,8 @@
 ﻿using System;
 using NUnit.Framework;
-using Nano.Engine.Tileset;
+using Nano.Engine.Graphics.Tileset;
 
-namespace NanoTests.Engine.Tileset
+namespace NanoTests.Engine.Graphics.Tileset
 {
     [TestFixture]
     public class TestTilesetTile
