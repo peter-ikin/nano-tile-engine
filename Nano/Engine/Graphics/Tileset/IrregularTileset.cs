@@ -30,7 +30,7 @@ namespace Nano.Engine.Graphics.Tileset
                 throw new NotImplementedException();
             }
         }
-        public Texture2D Texture
+        public ITexture2D Texture
         {
             get
             {

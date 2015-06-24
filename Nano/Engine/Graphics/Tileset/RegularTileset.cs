@@ -19,7 +19,7 @@ namespace Nano.Engine.Graphics.Tileset
 
 		public Point Offset { get; set; }
 
-		public Texture2D Texture { get; set; }
+		public ITexture2D Texture { get; set; }
 
 		/// <summary>
 		/// Gets the size of the tileset ( i.e. number of tiles)
@@ -44,7 +44,7 @@ namespace Nano.Engine.Graphics.Tileset
 
 		#endregion
 
-		public RegularTileset(string name, Texture2D texture, int columnCount, int rowCount, int tileWidth, int tileHeight)
+		public RegularTileset(string name, ITexture2D texture, int columnCount, int rowCount, int tileWidth, int tileHeight)
 		{
 			m_Name = name;
 			Texture = texture;

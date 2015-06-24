@@ -12,7 +12,7 @@ namespace Nano.Engine.Graphics.Tileset
 
         IList<Rectangle> Bounds{get; }
 
-        Texture2D Texture { get; set; }
+        ITexture2D Texture { get; set; }
 
 		int Size { get; }
 	}
