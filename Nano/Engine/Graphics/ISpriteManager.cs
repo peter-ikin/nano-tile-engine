@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Nano.Engine.Graphics.Sprites;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Nano.Engine.Graphics
 {
@@ -23,7 +25,7 @@ namespace Nano.Engine.Graphics
         ITexture2D CreateTexture2D(string texture);
 
         /// <summary>
-        /// Draws the texture2D.
+        /// Draws the ITexture2D.
         /// </summary>
         /// <param name="texture">Texture.</param>
         /// <param name="position">Position.</param>
@@ -31,6 +33,14 @@ namespace Nano.Engine.Graphics
         /// <param name="rotation">Rotation.</param>
         /// <param name="origin">Rotation Origin.</param>
         void DrawTexture2D(ITexture2D texture, Vector2 position, Rectangle sourceRectangle, float rotation, Vector2 origin);
+
+        /// <summary>
+        /// Draws the ITexture2D.
+        /// </summary>
+        /// <param name="texture">Texture.</param>
+        /// <param name="destinationRectangle">Destination rectangle.</param>
+        /// <param name="sourceRectangle">Source rectangle.</param>
+        void DrawTexture2D(ITexture2D texture, Rectangle destinationRectangle, Rectangle sourceRectangle);
     }
 }
 

@@ -16,6 +16,8 @@ namespace Nano.Engine.Graphics
         SpriteBatch m_SpriteBatch;
         ContentManager m_ContentManager;
 
+        #region Create Sprites/textures
+
         public ISprite CreateSprite(string texture)
         {
             Texture2D tex2D = m_ContentManager.Load<Texture2D>(texture);
@@ -44,20 +46,21 @@ namespace Nano.Engine.Graphics
             return sprite;
         }
 
+        public ITexture2D CreateTexture2D(string texture)
+        {
+            Texture2D tex2D = m_ContentManager.Load<Texture2D>(texture);
+            ITexture2D impl = CreateTextureImpl(tex2D);
+            Register(impl,tex2D);
+
+            return impl;
+        }
+
+        #endregion
+
         public SpriteManager(ContentManager contentManager, SpriteBatch spriteBatch)
         {
             m_ContentManager = contentManager;
             m_SpriteBatch = spriteBatch;
-        }
-
-        public void DrawTexture2D(ITexture2D texture, Vector2 position, Rectangle sourceRectangle, float rotation, Vector2 origin)
-        {
-            Texture2D tex = Resolve(texture);
-
-            m_SpriteBatch.Begin();
-            m_SpriteBatch.Draw(tex, position, sourceRectangle, 
-                Color.White, rotation, origin, 1.0f, SpriteEffects.None, 1);
-            m_SpriteBatch.End();
         }
 
         private void Register(ITexture2D texInterface, Texture2D texture)
@@ -108,19 +111,25 @@ namespace Nano.Engine.Graphics
         /// <param name="sprite">Sprite.</param>
         public void DrawSprite(ISprite sprite)
         {
-            Texture2D tex = Resolve(sprite);
+            Texture2D tex = Resolve(sprite); //TODO consider moving this resolve to the startbatch call i.e. StartBatch(ITexture2D) need to profile this
 
             m_SpriteBatch.Draw(tex, sprite.Position, sprite.SourceRectangle, 
                 Color.White, sprite.Rotation, sprite.RotationOrigin, 1.0f, SpriteEffects.None, 1);
         }
 
-        public ITexture2D CreateTexture2D(string texture)
+        public void DrawTexture2D(ITexture2D texture, Vector2 position, Rectangle sourceRectangle, float rotation, Vector2 origin)
         {
-            Texture2D tex2D = m_ContentManager.Load<Texture2D>(texture);
-            ITexture2D impl = CreateTextureImpl(tex2D);
-            Register(impl,tex2D);
+            Texture2D tex = Resolve(texture);//TODO consider moving this resolve to the startbatch call i.e. StartBatch(ITexture2D) need to profile this
 
-            return impl;
+            m_SpriteBatch.Draw(tex, position, sourceRectangle, 
+                Color.White, rotation, origin, 1.0f, SpriteEffects.None, 1);
+        }
+
+        public void DrawTexture2D(ITexture2D texture, Rectangle destinationRectangle, Rectangle sourceRectangle)
+        {
+            Texture2D tex = Resolve(texture); //TODO consider moving this resolve to the startbatch call i.e. StartBatch(ITexture2D) need to profile this
+            
+            m_SpriteBatch.Draw(tex, destinationRectangle, sourceRectangle, Color.White);
         }
     }
 }

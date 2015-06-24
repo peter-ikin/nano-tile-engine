@@ -37,7 +37,8 @@ namespace Nano.Engine.Graphics.Sprites
 
         /// <summary>
         /// Draw the sprite.
-        /// No batching is performed by using this call, sprite is simply drawn to screen
+        /// Sprite is drawn to screen in a single batch. If this is being called lots of times then consider
+        /// using the SpriteManager to manage the draw calls and batching manually.
         /// </summary>
         public void Draw()
         {
@@ -46,7 +47,9 @@ namespace Nano.Engine.Graphics.Sprites
                 throw new Exception("SpriteManager not set");
             #endif
 
+            SpriteManager.StartBatch();
             SpriteManager.DrawTexture2D(m_Texture, m_Position, m_SourceRectangle, m_Rotation, m_Origin);
+            SpriteManager.EndBatch();
         }
 
         /// <summary>
