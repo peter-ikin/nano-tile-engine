@@ -118,6 +118,9 @@ namespace Nano.Engine.Graphics.Sprites
         /// <param name="sourceRectangle">The rectangle of the supplied Texture2D that constitutes the drawable area of the sprite</param>
         public BasicSprite(ITexture2D texture, Rectangle sourceRectangle)
         {
+            if(texture == null)
+                throw new ArgumentNullException("texture","texture constructor parameter cannot be null");
+            
             m_Texture = texture;
 
             m_SourceRectangle = sourceRectangle;
@@ -131,6 +134,9 @@ namespace Nano.Engine.Graphics.Sprites
         /// <param name="texture">The Texture that the sprite is based on</param>
         public BasicSprite(ITexture2D texture)
         {
+            if(texture == null)
+                throw new ArgumentNullException("texture","texture constructor parameter cannot be null");
+            
             m_Texture = texture;
 
             m_SourceRectangle = new Rectangle(0, 0, texture.Width, texture.Height);
