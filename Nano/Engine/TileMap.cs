@@ -3,18 +3,18 @@ using System.Xml;
 using System.Collections.Generic;
 
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
 
 using Nano.Engine.Cameras;
 using Nano.Engine.Graphics.Tileset;
-using Nano.Engine.Sys;
+using Nano.Engine.Graphics;
 
 namespace Nano.Engine
 {
 	public class TileMap
 	{
 		#region member data
+
+        ISpriteManager m_SpriteManager;
 
 		List<ITileset> m_Tilesets;
 		List<MapLayer> m_MapLayers;
@@ -63,8 +63,14 @@ namespace Nano.Engine
 		}
 		#endregion
 
-        public TileMap (TileMapType mapType, int tileWidth, int tileHeight, List<ITileset> tilesets, List<MapLayer> layers)
+        public TileMap (ISpriteManager spriteManager, TileMapType mapType, int tileWidth, int tileHeight, List<ITileset> tilesets, List<MapLayer> layers)
 		{
+            m_SpriteManager = spriteManager;
+
+            m_TileMapType = mapType;
+            m_TileHeight = tileHeight;
+            m_TileWidth = tileWidth;
+
 			m_Tilesets = tilesets;
 			m_MapLayers = layers;
 		
@@ -76,108 +82,101 @@ namespace Nano.Engine
 				if(m_MapWidth != m_MapLayers[i].Width || m_MapHeight != m_MapLayers[i].Height)
 					throw new Exception("Map layers are not the same size");
 			}
-
-            m_TileMapType = mapType;
-            m_TileHeight = tileHeight;
-            m_TileWidth = tileWidth;
 		}
 
-		public void Draw (SpriteBatch spriteBatch, ICamera camera)
+		public void Draw (ICamera camera)
 		{
+            m_SpriteManager.StartBatch();
+
             if (TileMapType == TileMapType.Square) 
 			{
-				Point cameraPoint = VectorToCell (camera.Position * (1 / camera.Zoom));
-				Point viewPoint = VectorToCell (new Vector2 (
-					(camera.Position.X + camera.ViewportRectangle.Width) * (1 / camera.Zoom),
-					(camera.Position.Y + camera.ViewportRectangle.Height) * (1 / camera.Zoom))
-				);
-
-				Point min = new Point ();
-				Point max = new Point ();
-
-				min.X = Math.Max (0, cameraPoint.X - 1);
-				min.Y = Math.Max (0, cameraPoint.Y - 1);
-				max.X = Math.Min (viewPoint.X + 1, m_MapWidth);
-				max.Y = Math.Min (viewPoint.Y + 1, m_MapHeight);
-
-				Rectangle destination = new Rectangle (0, 0, TileWidth, TileHeight);
-				TilesetTile tile;
-
-				foreach (MapLayer layer in m_MapLayers) 
-				{
-					for (int y = min.Y; y < max.Y; y++) 
-					{
-						destination.Y = y * TileHeight;
-
-						for (int x = min.X; x < max.X; x++) 
-						{
-							tile = layer.GetTile (x, y);
-
-							if (tile.TileIndex == -1 || tile.TilesetId == -1)
-								continue;
-
-							destination.X = x * TileWidth;
-
-							spriteBatch.Draw (
-								m_Tilesets [tile.TilesetId].Texture,
-								destination,
-								m_Tilesets [tile.TilesetId].Bounds [tile.TileIndex],
-								Color.White);
-						}
-					}
-				}
-			} 
+                DrawSquareTileMap(camera);
+            } 
             else if (TileMapType == TileMapType.Isometric) 
 			{
-				Point min = new Point ();
-				Point max = new Point ();
-
-				//min.X = Math.Max (0, cameraPoint.X - 1);
-				//min.Y = Math.Max (0, cameraPoint.Y - 1);
-				//max.X = Math.Min (viewPoint.X + 1, m_MapWidth);
-				//max.Y = Math.Min (viewPoint.Y + 1, m_MapHeight);
-
-				min.X = 0;
-				min.Y = 0;
-				max.X = m_MapWidth;
-				max.Y = m_MapHeight;
-
-				Rectangle destination = new Rectangle (0, 0, TileWidth, TileHeight);
-				TilesetTile tile;
-
-				foreach (MapLayer layer in m_MapLayers) 
-				{
-					for (int i = min.X; i < max.X; i++)
-					{
-						for (int j = min.Y; j < max.Y; j++)
-						{
-							tile = layer.GetTile(i,j);
-
-							if (tile.TileIndex == -1 || tile.TilesetId == -1)
-								continue;
-
-							Point rowAdjustment = new Point(j * -(TileWidth/2),
-							                                j * (TileHeight/2) );
-
-							ITileset tset = m_Tilesets[tile.TilesetId];
-							destination.X = Origin.X + rowAdjustment.X + (i * (TileWidth/2)) + tset.Offset.X;
-                            destination.Y = Origin.Y + rowAdjustment.Y + (i * (TileHeight/2)) - (tset.Bounds [tile.TileIndex].Height - TileHeight) + tset.Offset.Y;
-
-                            destination.Height = m_Tilesets[tile.TilesetId].Bounds [tile.TileIndex].Height;
-                            destination.Width = m_Tilesets[tile.TilesetId].Bounds [tile.TileIndex].Width;
-
-							spriteBatch.Draw (
-								m_Tilesets [tile.TilesetId].Texture,
-								destination,
-								m_Tilesets [tile.TilesetId].Bounds [tile.TileIndex],
-								Color.White);
-						}
-					}
-
-
-				}
+                DrawIsometricTileMap();
 			}
+
+            m_SpriteManager.EndBatch();
 		}
+
+        private void DrawSquareTileMap(ICamera camera)
+        {
+            Point cameraPoint = VectorToCell(camera.Position * (1 / camera.Zoom));
+            Point viewPoint = VectorToCell(new Vector2((camera.Position.X + camera.ViewportRectangle.Width) * (1 / camera.Zoom), (camera.Position.Y + camera.ViewportRectangle.Height) * (1 / camera.Zoom)));
+
+            Point min = new Point();
+            Point max = new Point();
+
+            min.X = Math.Max(0, cameraPoint.X - 1);
+            min.Y = Math.Max(0, cameraPoint.Y - 1);
+            max.X = Math.Min(viewPoint.X + 1, m_MapWidth);
+            max.Y = Math.Min(viewPoint.Y + 1, m_MapHeight);
+
+            Rectangle destination = new Rectangle(0, 0, TileWidth, TileHeight);
+            TilesetTile tile;
+
+            foreach (MapLayer layer in m_MapLayers)
+            {
+                for (int y = min.Y; y < max.Y; y++)
+                {
+                    destination.Y = y * TileHeight;
+                    for (int x = min.X; x < max.X; x++)
+                    {
+                        tile = layer.GetTile(x, y);
+                        if (tile.TileIndex == -1 || tile.TilesetId == -1)
+                            continue;
+                        
+                        destination.X = x * TileWidth;
+
+                        m_SpriteManager.DrawTexture2D(m_Tilesets[tile.TilesetId].Texture, destination, m_Tilesets[tile.TilesetId].Bounds[tile.TileIndex]);
+                    }
+                }
+            }
+        }
+
+        private void DrawIsometricTileMap()
+        {
+            Point min = new Point();
+            Point max = new Point();
+
+            //min.X = Math.Max (0, cameraPoint.X - 1);
+            //min.Y = Math.Max (0, cameraPoint.Y - 1);
+            //max.X = Math.Min (viewPoint.X + 1, m_MapWidth);
+            //max.Y = Math.Min (viewPoint.Y + 1, m_MapHeight);
+
+            min.X = 0;
+            min.Y = 0;
+            max.X = m_MapWidth;
+            max.Y = m_MapHeight;
+
+            Rectangle destination = new Rectangle(0, 0, TileWidth, TileHeight);
+            TilesetTile tile;
+
+            foreach (MapLayer layer in m_MapLayers)
+            {
+                for (int i = min.X; i < max.X; i++)
+                {
+                    for (int j = min.Y; j < max.Y; j++)
+                    {
+                        tile = layer.GetTile(i, j);
+                        if (tile.TileIndex == -1 || tile.TilesetId == -1)
+                            continue;
+
+                        Point rowAdjustment = new Point(j * -(TileWidth / 2), j * (TileHeight / 2));
+                        ITileset tset = m_Tilesets[tile.TilesetId];
+
+                        destination.X = Origin.X + rowAdjustment.X + (i * (TileWidth / 2)) + tset.Offset.X;
+                        destination.Y = Origin.Y + rowAdjustment.Y + (i * (TileHeight / 2)) - (tset.Bounds[tile.TileIndex].Height - TileHeight) + tset.Offset.Y;
+
+                        destination.Height = m_Tilesets[tile.TilesetId].Bounds[tile.TileIndex].Height;
+                        destination.Width = m_Tilesets[tile.TilesetId].Bounds[tile.TileIndex].Width;
+
+                        m_SpriteManager.DrawTexture2D(m_Tilesets[tile.TilesetId].Texture, destination, m_Tilesets[tile.TilesetId].Bounds[tile.TileIndex]);
+                    }
+                }
+            }
+        }
 
         public Point VectorToCell(int x, int y)
         {
@@ -214,16 +213,13 @@ namespace Nano.Engine
 
 		#region FromFile methods
 
-		/// <summary>
-		/// Loads the tile map from file.
-		/// </summary>
-		/// <returns>
-		/// true if the tilemap was created succesfully , false otherwise.
-		/// </returns>
-		/// <param name='filename'>
-		/// the full pathname of the map file to load
-		/// </param>
-		public static TileMap FromFile(string filename,ContentManager content)
+        /// <summary>
+        /// Loads the TileMap from the specified file.
+        /// </summary>
+        /// <returns>A fully initialised TileMap object, or null.</returns>
+        /// <param name="filename">full path to the file including name</param>
+        /// <param name="spriteManager">Sprite manager.</param>
+		public static TileMap FromFile(string filename, ISpriteManager spriteManager)
 		{
 			TileMap map = null;
 
@@ -238,13 +234,13 @@ namespace Nano.Engine
 				//XmlNode width = root.Attributes.GetNamedItem("width");
 				//XmlNode height = root.Attributes.GetNamedItem("height");
 
-				map = ParseMapFile(root,content);
+                map = ParseMapFile(root, spriteManager);
 			}
 
 			return map;
 		}
 
-		private static TileMap ParseMapFile(XmlNode root,ContentManager content)
+        private static TileMap ParseMapFile(XmlNode root, ISpriteManager spriteManager)
 		{
             int? tileWidth = AttributeAsInt("tileWidth",root);
             int? tileHeight = AttributeAsInt("tileheight",root);
@@ -262,7 +258,7 @@ namespace Nano.Engine
 				}
 				else if (n.Name == "tileset")
 				{
-					Tuple<int,RegularTileset> tilesetTuple = ParseTileset(n,content);
+                    Tuple<int,RegularTileset> tilesetTuple = ParseTileset(n, spriteManager);
 					if(tilesetTuple != null)
 						tempTilesets.Add( tilesetTuple );
 				}
@@ -289,7 +285,7 @@ namespace Nano.Engine
 				tilesets.Add( pair.Item2 );
 			}
             TileMapType mapType = TileMapType.Square;
-            return new TileMap(mapType, tileWidth.Value, tileHeight.Value,tilesets,layers);
+            return new TileMap(spriteManager, mapType, tileWidth.Value, tileHeight.Value,tilesets,layers);
 		}
 
 		private static void ParseProperties(XmlNode propNode)
@@ -297,7 +293,7 @@ namespace Nano.Engine
 			//TODO Parse properties from tmx file
 		}
 
-		private static Tuple<int,RegularTileset> ParseTileset(XmlNode tilesetNode,ContentManager content)
+        private static Tuple<int,RegularTileset> ParseTileset(XmlNode tilesetNode, ISpriteManager spriteManager)
 		{
 			// example xml input
 			// <tileset firstgid="144" name="water" tilewidth="64" tileheight="64">
@@ -335,7 +331,7 @@ namespace Nano.Engine
 			//TODO validation of loaded data 	
 
 			textureName = System.IO.Path.GetFileNameWithoutExtension(textureName);
-			Texture2D tilesetTexture = content.Load<Texture2D>("tilesets/" + textureName);
+            ITexture2D tilesetTexture = spriteManager.CreateTexture2D("tilesets/" + textureName);
 
 			int tilesWide = textureWidth.Value / tileWidth.Value;
 			int tilesHigh = textureHeight.Value / tileHeight.Value;
