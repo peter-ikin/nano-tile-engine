@@ -1,8 +1,8 @@
 using System;
 
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Nano.Engine.Graphics.Tileset
 {
@@ -46,6 +46,12 @@ namespace Nano.Engine.Graphics.Tileset
 
 		public RegularTileset(string name, ITexture2D texture, int columnCount, int rowCount, int tileWidth, int tileHeight)
 		{
+            if (columnCount * tileWidth > texture.Width)
+                throw new ArgumentException("tile set size exceeds texture size");
+
+            if (rowCount * tileHeight > texture.Height)
+                throw new ArgumentException("tile set size exceeds texture size");
+            
 			m_Name = name;
 			Texture = texture;
 			Offset = new Point(0,0);
