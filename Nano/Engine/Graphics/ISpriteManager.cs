@@ -10,6 +10,7 @@ namespace Nano.Engine.Graphics
     {
         ISprite CreateSprite(string texture);
         ISprite CreateSprite(string texture, Rectangle sourceRectangle);
+        ISprite CreateSprite(ITexture2D tex2D, Rectangle sourceRectangle);
 
         /// <summary>
         /// Draws the sprite.

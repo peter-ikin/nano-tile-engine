@@ -46,6 +46,15 @@ namespace Nano.Engine.Graphics
             return sprite;
         }
 
+        public ISprite CreateSprite(ITexture2D tex2D, Rectangle sourceRectangle)
+        {
+            BasicSprite sprite = new BasicSprite(tex2D, sourceRectangle);
+            sprite.SpriteManager = this;
+            Register(sprite, Resolve(tex2D));
+
+            return sprite;
+        }
+
         public ITexture2D CreateTexture2D(string texture)
         {
             Texture2D tex2D = m_ContentManager.Load<Texture2D>(texture);
