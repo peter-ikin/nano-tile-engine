@@ -21,6 +21,8 @@ namespace Nano.Engine.Graphics
 
         void StartBatch();
 
+        void StartBatch(Matrix transform);
+
         void EndBatch();
 
         ITexture2D CreateTexture2D(string texture);

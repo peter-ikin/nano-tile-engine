@@ -108,6 +108,11 @@ namespace Nano.Engine.Graphics
             m_SpriteBatch.Begin();   
         }
 
+        public void StartBatch(Matrix transform)
+        {
+            m_SpriteBatch.Begin(SpriteSortMode.BackToFront, null, null, null, null, null, transform);
+        }
+
         public void EndBatch()
         {
             m_SpriteBatch.End();
