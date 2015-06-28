@@ -8,7 +8,7 @@ namespace Nano.Engine.Cameras
     /// <summary>
     /// simple 2D camera class
     /// </summary>
-	public class Camera2D
+    public class Camera2D : ICamera
 	{
 		#region member data
 
@@ -71,12 +71,14 @@ namespace Nano.Engine.Cameras
 		public Camera2D(Rectangle viewportRect)
 		{
 			m_ViewportRectangle = viewportRect;
+            m_Zoom = 1.0f;
 		}
 
 		public Camera2D(Rectangle viewportRect, Vector2 position)
 		{
 			m_ViewportRectangle = viewportRect;
 			m_Position = position;
+            m_Zoom = 1.0f;
 		}
 
         public void Update()

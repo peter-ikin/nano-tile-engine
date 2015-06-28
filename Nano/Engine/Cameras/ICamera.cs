@@ -43,6 +43,8 @@ namespace Nano.Engine.Cameras
         /// </summary>
         /// <value>The viewport rectangle.</value>
         Rectangle ViewportRectangle { get; }
+
+        void Update();
     }
 }
 
