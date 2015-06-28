@@ -86,7 +86,7 @@ namespace Nano.Engine
 
 		public void Draw (ICamera camera)
 		{
-            m_SpriteManager.StartBatch();
+            m_SpriteManager.StartBatch(camera.Transformation);
 
             if (TileMapType == TileMapType.Square) 
 			{
@@ -94,7 +94,7 @@ namespace Nano.Engine
             } 
             else if (TileMapType == TileMapType.Isometric) 
 			{
-                DrawIsometricTileMap();
+                DrawIsometricTileMap(camera);
 			}
 
             m_SpriteManager.EndBatch();
@@ -135,20 +135,18 @@ namespace Nano.Engine
             }
         }
 
-        private void DrawIsometricTileMap()
+        private void DrawIsometricTileMap(ICamera camera)
         {
+            Point cameraPoint = VectorToCell(camera.Position * (1 / camera.Zoom));
+            Point viewPoint = VectorToCell(new Vector2((camera.Position.X + camera.ViewportRectangle.Width) * (1 / camera.Zoom), (camera.Position.Y + camera.ViewportRectangle.Height) * (1 / camera.Zoom)));
+
             Point min = new Point();
             Point max = new Point();
 
-            //min.X = Math.Max (0, cameraPoint.X - 1);
-            //min.Y = Math.Max (0, cameraPoint.Y - 1);
-            //max.X = Math.Min (viewPoint.X + 1, m_MapWidth);
-            //max.Y = Math.Min (viewPoint.Y + 1, m_MapHeight);
-
-            min.X = 0;
-            min.Y = 0;
-            max.X = m_MapWidth;
-            max.Y = m_MapHeight;
+            min.X = Math.Max(0, cameraPoint.X - 1);
+            min.Y = Math.Max(0, cameraPoint.Y - 1);
+            max.X = Math.Min(viewPoint.X + 1, m_MapWidth);
+            max.Y = Math.Min(viewPoint.Y + 1, m_MapHeight);
 
             Rectangle destination = new Rectangle(0, 0, TileWidth, TileHeight);
             TilesetTile tile;
