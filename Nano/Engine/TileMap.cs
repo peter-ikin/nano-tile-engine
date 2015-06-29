@@ -143,10 +143,10 @@ namespace Nano.Engine
             Point min = new Point();
             Point max = new Point();
 
-            min.X = Math.Max(0, cameraPoint.X - 1);
-            min.Y = Math.Max(0, cameraPoint.Y - 1);
-            max.X = Math.Min(viewPoint.X + 1, m_MapWidth);
-            max.Y = Math.Min(viewPoint.Y + 1, m_MapHeight);
+            min.X = 0;//Math.Max(0, cameraPoint.X - 1);
+            min.Y = 0;//Math.Max(0, cameraPoint.Y - 1);
+            max.X = m_MapWidth; //Math.Min(viewPoint.X + 1, m_MapWidth);
+            max.Y = m_MapHeight; //Math.Min(viewPoint.Y + 1, m_MapHeight);
 
             Rectangle destination = new Rectangle(0, 0, TileWidth, TileHeight);
             TilesetTile tile;
