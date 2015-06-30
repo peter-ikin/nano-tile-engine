@@ -69,6 +69,7 @@
     <Compile Include="Engine\Graphics\Tileset\ITileset.cs" />
     <Compile Include="Engine\Graphics\Tileset\RegularTileset.cs" />
     <Compile Include="Engine\Graphics\Tileset\TilesetTile.cs" />
+    <Compile Include="Engine\IO\Import\TmxFileImporter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -80,6 +81,8 @@
     <Folder Include="Engine\Cameras\" />
     <Folder Include="StateManagement\" />
     <Folder Include="Engine\Graphics\" />
+    <Folder Include="Engine\IO\" />
+    <Folder Include="Engine\IO\Import\" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>
