@@ -21,6 +21,7 @@ namespace Nano.Engine
 
 		int m_MapWidth;
 		int m_MapHeight;
+        Point m_Origin;
 
         int m_TileHeight;
         int m_TileWidth;
@@ -58,7 +59,7 @@ namespace Nano.Engine
 		{
 			get 
 			{
-				return new Point( ((WidthInPixels / 2) - (TileWidth / 2)) ,TileHeight);
+                return m_Origin;
 			}
 		}
 		#endregion
@@ -82,6 +83,11 @@ namespace Nano.Engine
 				if(m_MapWidth != m_MapLayers[i].Width || m_MapHeight != m_MapLayers[i].Height)
 					throw new Exception("Map layers are not the same size");
 			}
+
+            if (mapType == TileMapType.Square)
+                m_Origin = new Point(0, 0);
+            else if(mapType == TileMapType.Isometric)
+                m_Origin = new Point( ((WidthInPixels / 2) - (TileWidth / 2)) ,TileHeight);
 		}
 
 		public void Draw (ICamera camera)
