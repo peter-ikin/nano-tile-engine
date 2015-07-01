@@ -9,6 +9,7 @@ using NanoTests.Engine.Sys;
 using Nano.Engine.Cameras;
 using Microsoft.Xna.Framework;
 using System.Reflection;
+using System.Threading;
 
 namespace NanoTests.Engine
 {
@@ -372,6 +373,54 @@ namespace NanoTests.Engine
             Assert.That(destRects[2],Is.EqualTo(new Rectangle(32, 48, 32, 32)));
             Assert.That(destRects[3],Is.EqualTo(new Rectangle(16, 64, 32, 32)));
         }
+
+        ////////////////////////////////////////////////////////////////
+        /// Alternative construction tests
+        ////////////////////////////////////////////////////////////////
+        [Test] 
+        public void TestConstructionWithMapGenerator()
+        {
+            var tsl = new List<ITileset>();
+            tsl.Add(m_TileSetMock.Object);
+
+            var layer = new MapLayer("test", 2, 2);
+            var mll = new List<MapLayer>();
+            mll.Add(layer);
+
+            var generator = new Mock<IMapGenerator>();
+            generator.Setup(m => m.GenerateLayers()).Returns(mll);
+            generator.Setup(m => m.GenerateTilesets()).Returns(tsl);
+
+            var map = new TileMap(m_SpriteMgrMock.Object, TileMapType.Square, 32, 32, generator.Object);
+
+            Assert.That(map,Is.Not.Null); 
+        }
+
+        [Test] 
+        public void TestConstructionHasCorrectMapParameters()
+        {
+            var tsl = new List<ITileset>();
+            tsl.Add(m_TileSetMock.Object);
+
+            var layer = new MapLayer("test", 2, 2);
+            var mll = new List<MapLayer>();
+            mll.Add(layer);
+
+            var generator = new Mock<IMapGenerator>();
+
+            generator.Setup(m => m.GenerateLayers()).Returns(mll);
+            generator.Setup(m => m.GenerateTilesets()).Returns(tsl);
+
+            var map = new TileMap(m_SpriteMgrMock.Object, TileMapType.Square, 32, 32, generator.Object);
+
+            Assert.That(map,Is.Not.Null); 
+            Assert.That(map.HeightInPixels, Is.EqualTo(32*2));
+            Assert.That(map.Origin, Is.EqualTo(new Point(0,0)));
+            Assert.That(map.TileHeight, Is.EqualTo(32));
+            Assert.That(map.TileMapType, Is.EqualTo(TileMapType.Square));
+            Assert.That(map.TileWidth, Is.EqualTo(32));
+        }
+
     }
 }
 

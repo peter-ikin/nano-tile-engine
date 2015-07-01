@@ -32,6 +32,7 @@ namespace Nano.Engine
         #endregion
 
         #region properties
+
         public int TileHeight 
         {
             get { return m_TileHeight; }
@@ -66,6 +67,8 @@ namespace Nano.Engine
         }
         #endregion
 
+        #region Constructors
+
         public TileMap (ISpriteManager spriteManager, TileMapType mapType, int tileWidth, int tileHeight, List<ITileset> tilesets, List<MapLayer> layers)
         {
             m_SpriteManager = spriteManager;
@@ -80,18 +83,57 @@ namespace Nano.Engine
             m_MapWidth = m_MapLayers[0].Width;
             m_MapHeight = m_MapLayers[0].Height;
 
-            for(int i = 1; i < layers.Count; i++)
-            {
-                if(m_MapWidth != m_MapLayers[i].Width || m_MapHeight != m_MapLayers[i].Height)
-                    throw new Exception("Map layers are not the same size");
-            }
+            VerifyLayerGeometry(m_MapLayers);
 
-            if (mapType == TileMapType.Square)
-                m_Origin = new Point(0, 0);
-            else if(mapType == TileMapType.Isometric)
-                m_Origin = new Point( ((WidthInPixels / 2) - (TileWidth / 2)) ,TileHeight);
+            SetOrigin(m_TileMapType);
         }
 
+        public TileMap(ISpriteManager spriteManager, TileMapType mapType, int tileWidth, int tileHeight, IMapGenerator generator)
+        {
+            m_SpriteManager = spriteManager;
+
+            var generatedLayers = generator.GenerateLayers();
+            m_MapLayers = generatedLayers;
+
+            m_TileMapType = mapType;
+            m_TileHeight = tileHeight;
+            m_TileWidth =  tileWidth;
+
+            m_MapWidth = m_MapLayers[0].Width;
+            m_MapHeight = m_MapLayers[0].Height;
+
+            VerifyLayerGeometry(m_MapLayers);
+
+            var generatedTilesets = generator.GenerateTilesets();
+            m_Tilesets = generatedTilesets;
+
+            SetOrigin(m_TileMapType);
+        }
+
+        #endregion
+
+        private void VerifyLayerGeometry(List<MapLayer> layers)
+        {
+            for (int i = 1; i < layers.Count; i++)
+            {
+                if (m_MapWidth != m_MapLayers[i].Width || m_MapHeight != m_MapLayers[i].Height)
+                    throw new Exception("Map layers are not the same size");
+            }
+        }
+
+        private void SetOrigin(TileMapType mapType)
+        {
+            if (mapType == TileMapType.Square)
+                m_Origin = new Point(0, 0);
+            else
+                if (mapType == TileMapType.Isometric)
+                    m_Origin = new Point(((WidthInPixels / 2) - (TileWidth / 2)), TileHeight);
+        }
+
+        /// <summary>
+        /// Draw the TileMap using the supplied Camera
+        /// </summary>
+        /// <param name="camera">Camera.</param>
         public void Draw (ICamera camera)
         {
             m_SpriteManager.StartBatch(camera.Transformation);
@@ -209,6 +251,11 @@ namespace Nano.Engine
             }
         }
 
+        /// <summary>
+        /// Adds a layer to the TileMap.
+        /// Added layers must have the same dimensions as existing layers
+        /// </summary>
+        /// <param name="layer">The Layer to add</param>
         public void AddLayer(MapLayer layer)
         {
             if(layer.Width != m_MapWidth && layer.Height != m_MapHeight)
@@ -216,9 +263,7 @@ namespace Nano.Engine
 
             m_MapLayers.Add(layer);
         }
-
-        #region FromFile methods
-
+            
         /// <summary>
         /// Loads the TileMap from the specified file.
         /// Supported file formats : .tmx(partial)
@@ -237,8 +282,6 @@ namespace Nano.Engine
 
             throw new FileLoadException(string.Format("Unsupported file type {0}", ext));
         }
-
-        #endregion
     }
 }
 
