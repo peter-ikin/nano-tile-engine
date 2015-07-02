@@ -71,6 +71,8 @@
     <Compile Include="Engine\Graphics\Tileset\TilesetTile.cs" />
     <Compile Include="Engine\IO\Import\TmxFileImporter.cs" />
     <Compile Include="Engine\IMapGenerator.cs" />
+    <Compile Include="Engine\Sys\IRandom.cs" />
+    <Compile Include="Engine\Sys\CMWC4096.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

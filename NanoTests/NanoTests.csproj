@@ -55,6 +55,7 @@
     <Compile Include="Engine\Graphics\Tileset\TestTilesetTile.cs" />
     <Compile Include="Engine\Graphics\Sprites\TestBasicSprite.cs" />
     <Compile Include="Engine\TestTileMap.cs" />
+    <Compile Include="Engine\Sys\TestCMWC4096.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
