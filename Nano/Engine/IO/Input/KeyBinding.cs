@@ -1,6 +1,6 @@
 using System;
 
-namespace Nano.Input
+namespace Nano.Engine.IO.Input
 {
 	/// <summary>
 	/// The game adds a bunch of commands to the input manager and a KeyBinding

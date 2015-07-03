@@ -2,15 +2,15 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace Nano.Input
+namespace Nano.Engine.IO.Input
 {
     public interface IInputService
     {
         #region state properties
         KeyboardState KeyboardState{ get; }
         KeyboardState LastKeyboardState{ get; }
-        GamePadState[] GamePadStates{ get; }
-        GamePadState[] LastGamePadStates{ get; }
+        //GamePadState[] GamePadStates{ get; }
+        //GamePadState[] LastGamePadStates{ get; }
         MouseState MouseState{ get; }
         MouseState LastMouseState{ get; }
 
@@ -41,9 +41,9 @@ namespace Nano.Input
         #endregion
 
         #region Gamepad
-        bool GamePadButtonReleased(Buttons button, PlayerIndex index);
-        bool GamePadButtonPressed(Buttons button, PlayerIndex index);
-        bool GamePadButtonDown(Buttons button, PlayerIndex index);
+        //bool GamePadButtonReleased(Buttons button, PlayerIndex index);
+        //bool GamePadButtonPressed(Buttons button, PlayerIndex index);
+        //bool GamePadButtonDown(Buttons button, PlayerIndex index);
         #endregion
     }
 }

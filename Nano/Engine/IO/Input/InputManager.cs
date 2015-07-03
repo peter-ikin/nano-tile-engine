@@ -2,7 +2,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace Nano.Input
+namespace Nano.Engine.IO.Input
 {
 	public class InputManager : GameComponent, IInputService
 	{
@@ -11,8 +11,8 @@ namespace Nano.Input
 		private KeyboardState m_KeyboardState;
 		private KeyboardState m_LastKeyboardState;
 
-		private GamePadState[] m_GamePadStates;
-		private GamePadState[] m_LastGamePadStates;
+		//private GamePadState[] m_GamePadStates;
+		//private GamePadState[] m_LastGamePadStates;
 
 		private MouseState m_MouseState;
 		private MouseState m_LastMouseState;
@@ -31,15 +31,15 @@ namespace Nano.Input
 			get { return m_LastKeyboardState; }
 		}
 
-		public GamePadState[] GamePadStates
-		{
-			get { return m_GamePadStates; }
-		}
+		//public GamePadState[] GamePadStates
+		//{
+		//	get { return m_GamePadStates; }
+		//}
 
-		public GamePadState[] LastGamePadStates
-		{
-			get { return m_LastGamePadStates; }
-		}
+		//public GamePadState[] LastGamePadStates
+		//{
+		//	get { return m_LastGamePadStates; }
+		//}
 
 		public MouseState LastMouseState
 		{
@@ -58,11 +58,11 @@ namespace Nano.Input
 		{
 			m_KeyboardState = Keyboard.GetState();
 
-			m_GamePadStates = new GamePadState[Enum.GetValues (typeof(PlayerIndex)).Length];
-			foreach (PlayerIndex idx in Enum.GetValues(typeof(PlayerIndex)))
-			{
-				m_GamePadStates[(int)idx] = GamePad.GetState (idx);
-			}
+			//m_GamePadStates = new GamePadState[Enum.GetValues (typeof(PlayerIndex)).Length];
+			//foreach (PlayerIndex idx in Enum.GetValues(typeof(PlayerIndex)))
+			//{
+			//	m_GamePadStates[(int)idx] = GamePad.GetState (idx);
+			//}
 
 			m_MouseState = Mouse.GetState();
 		}
@@ -74,11 +74,11 @@ namespace Nano.Input
 			m_LastKeyboardState = m_KeyboardState;
 			m_KeyboardState = Keyboard.GetState();
 
-			m_LastGamePadStates = m_GamePadStates.Clone() as GamePadState[];
-			foreach (PlayerIndex idx in Enum.GetValues(typeof(PlayerIndex)))
-			{
-				m_GamePadStates[(int)idx] = GamePad.GetState(idx);
-			}
+			//m_LastGamePadStates = m_GamePadStates.Clone() as GamePadState[];
+			//foreach (PlayerIndex idx in Enum.GetValues(typeof(PlayerIndex)))
+			//{
+			//	m_GamePadStates[(int)idx] = GamePad.GetState(idx);
+			//}
 
 			m_LastMouseState = m_MouseState;
 			m_MouseState = Mouse.GetState();
@@ -223,22 +223,22 @@ namespace Nano.Input
 
 		#region game pad member functions
 
-		public bool GamePadButtonReleased(Buttons button, PlayerIndex index)
-		{
-			return m_GamePadStates[(int)index].IsButtonUp(button) && 
-				m_LastGamePadStates[(int)index].IsButtonDown(button);
-		}
+		//public bool GamePadButtonReleased(Buttons button, PlayerIndex index)
+		//{
+		//	return m_GamePadStates[(int)index].IsButtonUp(button) && 
+		//		m_LastGamePadStates[(int)index].IsButtonDown(button);
+		//}
 
-		public bool GamePadButtonPressed(Buttons button, PlayerIndex index)
-		{
-			return m_GamePadStates[(int)index].IsButtonDown(button) &&
-				m_LastGamePadStates[(int)index].IsButtonUp(button);
-		}
+		//public bool GamePadButtonPressed(Buttons button, PlayerIndex index)
+		//{
+		//	return m_GamePadStates[(int)index].IsButtonDown(button) &&
+		//		m_LastGamePadStates[(int)index].IsButtonUp(button);
+		//}
 
-		public bool GamePadButtonDown(Buttons button,PlayerIndex index)
-		{
-			return m_GamePadStates[(int)index].IsButtonDown(button);
-		}
+		//public bool GamePadButtonDown(Buttons button,PlayerIndex index)
+		//{
+		//	return m_GamePadStates[(int)index].IsButtonDown(button);
+		//}
 		#endregion
 	}
 }

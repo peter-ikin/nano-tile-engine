@@ -42,10 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Input\InputManager.cs" />
-    <Compile Include="Input\KeyBinding.cs" />
     <Compile Include="Engine\MapLayer.cs" />
-    <Compile Include="Input\IInputService.cs" />
     <Compile Include="Engine\Sys\IServices.cs" />
     <Compile Include="Engine\Sys\ServiceLocator.cs" />
     <Compile Include="Engine\TileMap.cs" />
@@ -73,13 +70,15 @@
     <Compile Include="Engine\IMapGenerator.cs" />
     <Compile Include="Engine\Sys\IRandom.cs" />
     <Compile Include="Engine\Sys\CMWC4096.cs" />
+    <Compile Include="Engine\IO\Input\IInputService.cs" />
+    <Compile Include="Engine\IO\Input\InputManager.cs" />
+    <Compile Include="Engine\IO\Input\KeyBinding.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Input\" />
     <Folder Include="Engine\" />
     <Folder Include="Engine\Cameras\" />
     <Folder Include="StateManagement\" />
