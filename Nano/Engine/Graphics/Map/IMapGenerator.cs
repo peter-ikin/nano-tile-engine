@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Nano.Engine.Graphics.Tileset;
 
-namespace Nano.Engine
+namespace Nano.Engine.Graphics.Map
 {
     public interface IMapGenerator
     {

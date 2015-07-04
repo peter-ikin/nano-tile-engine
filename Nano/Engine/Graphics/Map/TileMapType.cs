@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Nano.Engine
+namespace Nano.Engine.Graphics.Map
 {
     public enum TileMapType
     {

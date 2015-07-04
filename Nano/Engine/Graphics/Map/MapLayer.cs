@@ -1,7 +1,7 @@
 using System;
 using Nano.Engine.Graphics.Tileset;
 
-namespace Nano.Engine
+namespace Nano.Engine.Graphics.Map
 {
 	/// <summary>
 	/// Class that represents a layer of tiles in the tilemap.

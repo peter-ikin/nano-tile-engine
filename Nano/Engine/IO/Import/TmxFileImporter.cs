@@ -4,6 +4,7 @@ using System.Xml;
 using Nano.Engine.Graphics.Tileset;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Nano.Engine.Graphics.Map;
 
 namespace Nano.Engine.IO.Import
 {

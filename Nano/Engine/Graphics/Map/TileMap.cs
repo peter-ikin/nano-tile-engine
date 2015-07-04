@@ -10,7 +10,7 @@ using Nano.Engine.Graphics;
 using Nano.Engine.IO.Import;
 using System.IO;
 
-namespace Nano.Engine
+namespace Nano.Engine.Graphics.Map
 {
     public class TileMap
     {

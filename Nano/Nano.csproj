@@ -42,13 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Engine\MapLayer.cs" />
     <Compile Include="Engine\Sys\IServices.cs" />
     <Compile Include="Engine\Sys\ServiceLocator.cs" />
-    <Compile Include="Engine\TileMap.cs" />
     <Compile Include="Engine\Cameras\Camera2D.cs" />
     <Compile Include="Engine\Cameras\ICamera.cs" />
-    <Compile Include="Engine\TileMapType.cs" />
     <Compile Include="StateManagement\GameStateManager.cs" />
     <Compile Include="StateManagement\GameState.cs" />
     <Compile Include="StateManagement\IGameStateServices.cs" />
@@ -67,12 +64,19 @@
     <Compile Include="Engine\Graphics\Tileset\RegularTileset.cs" />
     <Compile Include="Engine\Graphics\Tileset\TilesetTile.cs" />
     <Compile Include="Engine\IO\Import\TmxFileImporter.cs" />
-    <Compile Include="Engine\IMapGenerator.cs" />
     <Compile Include="Engine\Sys\IRandom.cs" />
     <Compile Include="Engine\Sys\CMWC4096.cs" />
     <Compile Include="Engine\IO\Input\IInputService.cs" />
     <Compile Include="Engine\IO\Input\InputManager.cs" />
     <Compile Include="Engine\IO\Input\KeyBinding.cs" />
+    <Compile Include="Engine\Graphics\Map\IMapGenerator.cs" />
+    <Compile Include="Engine\Graphics\Map\MapLayer.cs" />
+    <Compile Include="Engine\Graphics\Map\TileMap.cs" />
+    <Compile Include="Engine\Graphics\Map\TileMapType.cs" />
+    <Compile Include="Engine\Graphics\Map\BspMapGenerator.cs" />
+    <Compile Include="Basics\Tree\BinaryTreeNode.cs" />
+    <Compile Include="Basics\Tree\BinaryTree.cs" />
+    <Compile Include="Basics\Tree\TreeNode.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -85,6 +89,9 @@
     <Folder Include="Engine\Graphics\" />
     <Folder Include="Engine\IO\" />
     <Folder Include="Engine\IO\Import\" />
+    <Folder Include="Engine\Graphics\Map\" />
+    <Folder Include="Basics\" />
+    <Folder Include="Basics\Tree\" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>
