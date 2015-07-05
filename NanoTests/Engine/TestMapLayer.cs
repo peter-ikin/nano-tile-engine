@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using Nano.Engine;
 using Nano.Engine.Graphics.Tileset;
+using Nano.Engine.Graphics.Map;
 
 namespace NanoTests.Engine
 {

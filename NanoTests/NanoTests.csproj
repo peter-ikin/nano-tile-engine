@@ -56,6 +56,9 @@
     <Compile Include="Engine\Graphics\Sprites\TestBasicSprite.cs" />
     <Compile Include="Engine\TestTileMap.cs" />
     <Compile Include="Engine\Sys\TestCMWC4096.cs" />
+    <Compile Include="Basics\Tree\TestBinaryTreeNode.cs" />
+    <Compile Include="Basics\Tree\TestBinaryTree.cs" />
+    <Compile Include="Basics\Tree\TestTreeNode.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -67,6 +70,8 @@
     <Folder Include="StateManagement\" />
     <Folder Include="Engine\Cameras\" />
     <Folder Include="Engine\Graphics\" />
+    <Folder Include="Basics\" />
+    <Folder Include="Basics\Tree\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Nano\Nano.csproj">

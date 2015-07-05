@@ -10,6 +10,7 @@ using Nano.Engine.Cameras;
 using Microsoft.Xna.Framework;
 using System.Reflection;
 using System.Threading;
+using Nano.Engine.Graphics.Map;
 
 namespace NanoTests.Engine
 {
