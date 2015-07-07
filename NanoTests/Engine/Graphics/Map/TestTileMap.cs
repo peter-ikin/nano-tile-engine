@@ -12,7 +12,7 @@ using System.Reflection;
 using System.Threading;
 using Nano.Engine.Graphics.Map;
 
-namespace NanoTests.Engine
+namespace NanoTests.Engine.Graphics.Map
 {
     [TestFixture]
     public class TestTileMap

@@ -46,7 +46,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Engine\TestMapLayer.cs" />
     <Compile Include="Engine\Sys\TestServiceLocator.cs" />
     <Compile Include="StateManagement\TestGameStateManager.cs" />
     <Compile Include="Engine\Cameras\TestCamera2D.cs" />
@@ -54,11 +53,13 @@
     <Compile Include="Engine\Graphics\Tileset\TestRegularTileset.cs" />
     <Compile Include="Engine\Graphics\Tileset\TestTilesetTile.cs" />
     <Compile Include="Engine\Graphics\Sprites\TestBasicSprite.cs" />
-    <Compile Include="Engine\TestTileMap.cs" />
     <Compile Include="Engine\Sys\TestCMWC4096.cs" />
     <Compile Include="Basics\Tree\TestBinaryTreeNode.cs" />
     <Compile Include="Basics\Tree\TestBinaryTree.cs" />
     <Compile Include="Basics\Tree\TestTreeNode.cs" />
+    <Compile Include="Engine\Graphics\Map\TestMapLayer.cs" />
+    <Compile Include="Engine\Graphics\Map\TestTileMap.cs" />
+    <Compile Include="Engine\Graphics\Map\TestBspMapGenerator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -72,6 +73,7 @@
     <Folder Include="Engine\Graphics\" />
     <Folder Include="Basics\" />
     <Folder Include="Basics\Tree\" />
+    <Folder Include="Engine\Graphics\Map\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Nano\Nano.csproj">
