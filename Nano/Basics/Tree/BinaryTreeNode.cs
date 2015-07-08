@@ -38,7 +38,7 @@ namespace Nano.Basics.Tree
             {
                 if (base.Children == null)
                 {
-                    base.Children = new List<TreeNode<T>>(2);
+                    base.Children = new List<TreeNode<T>>(2){null,null};
                 }
 
                 base.Children[0] = value;
@@ -59,7 +59,7 @@ namespace Nano.Basics.Tree
             {
                 if (base.Children == null)
                 {
-                    base.Children = new List<TreeNode<T>>(2);
+                    base.Children = new List<TreeNode<T>>(2){null,null};
                 }
 
                 base.Children[1] = value;
