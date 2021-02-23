@@ -3,6 +3,7 @@ using NUnit.Framework;
 using Moq;
 using Nano.Engine.Sys;
 using Microsoft.Xna.Framework;
+using NUnit.Framework.Constraints;
 
 namespace NanoTests.Engine.Sys
 {
@@ -17,23 +18,25 @@ namespace NanoTests.Engine.Sys
         }
 
         [Test]
-        [ExpectedException(typeof(NullReferenceException))]
         public void TestAddServiceWithNoContainerSet()
         {
             ServiceLocator.Instance.SetServiceContainer(null);
             var testService = new Mock<ITestServiceA>();
             IServices services = ServiceLocator.Services;
-            services.AddService<ITestServiceA>(testService.Object);
+
+            Action testDelegate = () => services.AddService<ITestServiceA>(testService.Object);
+            Assert.That(testDelegate, Throws.TypeOf<NullReferenceException>());
         }
 
         [Test]
-        [ExpectedException(typeof(NullReferenceException))]
         public void TestAddServiceWithNoContainerSet2()
         {
             ServiceLocator.Instance.SetServiceContainer(null);
             var testService = new Mock<ITestServiceB>();
             IServices services = ServiceLocator.Services;
-            services.AddService(typeof(ITestServiceB),testService.Object);
+
+            Action testDelegate = () => services.AddService(typeof(ITestServiceB), testService.Object);
+            Assert.That(testDelegate, Throws.TypeOf<NullReferenceException>());
         }
 
         [Test]

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using OpenTK.Graphics.ES10;
 
 namespace Nano.Engine.Sys
 {

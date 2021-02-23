@@ -1,105 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DCC448F2-1AAB-441D-A1F8-8166E484D498}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>Nano</RootNamespace>
-    <AssemblyName>Nano</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="MonoGame.Framework">
-      <HintPath>packages\MonoGame.Framework.MacOS.3.4.0.459\lib\net45\MonoGame.Framework.dll</HintPath>
-    </Reference>
-    <Reference Include="Tao.Sdl">
-      <HintPath>packages\MonoGame.Framework.MacOS.3.4.0.459\lib\net45\Tao.Sdl.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenTK">
-      <HintPath>packages\MonoGame.Framework.MacOS.3.4.0.459\lib\net45\OpenTK.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Engine\Sys\IServices.cs" />
-    <Compile Include="Engine\Sys\ServiceLocator.cs" />
-    <Compile Include="Engine\Cameras\Camera2D.cs" />
-    <Compile Include="Engine\Cameras\ICamera.cs" />
-    <Compile Include="StateManagement\GameStateManager.cs" />
-    <Compile Include="StateManagement\GameState.cs" />
-    <Compile Include="StateManagement\IGameStateServices.cs" />
-    <Compile Include="StateManagement\IGameState.cs" />
-    <Compile Include="Engine\Sys\ILoggingService.cs" />
-    <Compile Include="Engine\Sys\SimpleFileLogger.cs" />
-    <Compile Include="Engine\Sys\NullLogger.cs" />
-    <Compile Include="Engine\Graphics\ITexture2D.cs" />
-    <Compile Include="Engine\Graphics\ISpriteManager.cs" />
-    <Compile Include="Engine\Graphics\SpriteManager.cs" />
-    <Compile Include="Engine\Graphics\Sprites\BasicSprite.cs" />
-    <Compile Include="Engine\Graphics\Sprites\ISprite.cs" />
-    <Compile Include="Engine\Graphics\Texture2DImpl.cs" />
-    <Compile Include="Engine\Graphics\Tileset\IrregularTileset.cs" />
-    <Compile Include="Engine\Graphics\Tileset\ITileset.cs" />
-    <Compile Include="Engine\Graphics\Tileset\RegularTileset.cs" />
-    <Compile Include="Engine\Graphics\Tileset\TilesetTile.cs" />
-    <Compile Include="Engine\IO\Import\TmxFileImporter.cs" />
-    <Compile Include="Engine\Sys\IRandom.cs" />
-    <Compile Include="Engine\Sys\CMWC4096.cs" />
-    <Compile Include="Engine\IO\Input\IInputService.cs" />
-    <Compile Include="Engine\IO\Input\InputManager.cs" />
-    <Compile Include="Engine\IO\Input\KeyBinding.cs" />
-    <Compile Include="Engine\Graphics\Map\IMapGenerator.cs" />
-    <Compile Include="Engine\Graphics\Map\MapLayer.cs" />
-    <Compile Include="Engine\Graphics\Map\TileMap.cs" />
-    <Compile Include="Engine\Graphics\Map\TileMapType.cs" />
-    <Compile Include="Engine\Graphics\Map\BspMapGenerator.cs" />
-    <Compile Include="Basics\Tree\BinaryTreeNode.cs" />
-    <Compile Include="Basics\Tree\BinaryTree.cs" />
-    <Compile Include="Basics\Tree\TreeNode.cs" />
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Engine\" />
-    <Folder Include="Engine\Cameras\" />
-    <Folder Include="StateManagement\" />
-    <Folder Include="Engine\Graphics\" />
-    <Folder Include="Engine\IO\" />
-    <Folder Include="Engine\IO\Import\" />
-    <Folder Include="Engine\Graphics\Map\" />
-    <Folder Include="Basics\" />
-    <Folder Include="Basics\Tree\" />
-  </ItemGroup>
-  <ProjectExtensions>
-    <MonoDevelop>
-      <Properties>
-        <Policies>
-          <DotNetNamingPolicy DirectoryNamespaceAssociation="PrefixedHierarchical" ResourceNamePolicy="FileFormatDefault" />
-        </Policies>
-      </Properties>
-    </MonoDevelop>
-  </ProjectExtensions>
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" />
+    </ItemGroup>
+
 </Project>
